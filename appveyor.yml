@@ -15,5 +15,5 @@ after_build:
   - 7z a AsterixDisplay.7z "%APPVEYOR_BUILD_FOLDER%\AsterixDisplay\bin\Debug"
 
 artifacts:  # Archive the generated packages in the ci.appveyor.com build report.  - path: bin\Debug\*
-  - path: AsterixDisplay.zip
+  - path: AsterixDisplay.7z
     name: artifacts-all
