@@ -1,0 +1,19 @@
+image: Visual Studio 2019 Preview
+  
+before_build:
+  - cmd: nuget restore
+
+install:
+  appveyor DownloadFile https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
+
+build:
+  project: C:\projects\asterixdecoderpgta\PGTA.sln    # path to Visual Studio solution or project
+  parallel: false                                       # enable MSBuild parallel builds
+  verbosity: normal                                     # MSBuild verbosity level (quiet|minimal|normal|detailed)
+
+after_build:
+  - 7z a AsterixDisplay.zip "%APPVEYOR_BUILD_FOLDER%\AsterixDisplay\bin\Debug\*.*"
+
+artifacts:  # Archive the generated packages in the ci.appveyor.com build report.  - path: bin\Debug\*
+  - path: AsterixDisplay.zip
+    name: artifacts-all
